@@ -1,0 +1,94 @@
+digraph MinDFA {
+rankdir=LR;
+node [shape = doublecircle];
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+node [shape = circle];
+start [shape=point]; start -> 24;
+0 -> 13 [label="a"];
+0 -> 43 [label="b"];
+1 -> 12 [label="a"];
+1 -> 43 [label="b"];
+2 -> 17 [label="a"];
+2 -> 11 [label="b"];
+3 -> 18 [label="a"];
+3 -> 23 [label="b"];
+4 -> 29 [label="a"];
+4 -> 25 [label="b"];
+5 -> 20 [label="a"];
+5 -> 10 [label="b"];
+6 -> 12 [label="a"];
+6 -> 25 [label="b"];
+7 -> 12 [label="a"];
+7 -> 21 [label="b"];
+8 -> 12 [label="a"];
+8 -> 4 [label="b"];
+9 -> 0 [label="a"];
+9 -> 25 [label="b"];
+10 -> 42 [label="a"];
+10 -> 41 [label="b"];
+11 -> 42 [label="a"];
+11 -> 31 [label="b"];
+12 -> 30 [label="a"];
+12 -> 41 [label="b"];
+13 -> 30 [label="a"];
+13 -> 40 [label="b"];
+14 -> 39 [label="a"];
+14 -> 38 [label="b"];
+15 -> 36 [label="a"];
+15 -> 27 [label="b"];
+16 -> 36 [label="a"];
+16 -> 22 [label="b"];
+17 -> 30 [label="a"];
+17 -> 35 [label="b"];
+18 -> 30 [label="a"];
+18 -> 33 [label="b"];
+19 -> 16 [label="a"];
+19 -> 32 [label="b"];
+20 -> 15 [label="a"];
+20 -> 32 [label="b"];
+21 -> 26 [label="a"];
+21 -> 32 [label="b"];
+22 -> 24 [label="a"];
+22 -> 31 [label="b"];
+23 -> 28 [label="a"];
+23 -> 31 [label="b"];
+24 -> 16 [label="a"];
+24 -> 14 [label="b"];
+25 -> 42 [label="a"];
+26 -> 36 [label="a"];
+26 -> 5 [label="b"];
+27 -> 24 [label="a"];
+27 -> 1 [label="b"];
+28 -> 16 [label="a"];
+28 -> 2 [label="b"];
+29 -> 30 [label="a"];
+29 -> 9 [label="b"];
+30 -> 42 [label="b"];
+31 -> 41 [label="b"];
+32 -> 7 [label="a"];
+32 -> 38 [label="b"];
+33 -> 6 [label="a"];
+33 -> 37 [label="b"];
+34 -> 37 [label="b"];
+35 -> 3 [label="a"];
+35 -> 32 [label="b"];
+36 -> 34 [label="b"];
+37 -> 3 [label="a"];
+37 -> 14 [label="b"];
+38 -> 31 [label="b"];
+39 -> 19 [label="b"];
+40 -> 6 [label="a"];
+40 -> 6 [label="b"];
+41 -> 6 [label="a"];
+42 -> 6 [label="b"];
+43 -> 8 [label="a"];
+}
