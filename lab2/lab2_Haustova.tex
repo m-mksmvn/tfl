@@ -1,0 +1,255 @@
+\documentclass[a4paper, 14pt]{extarticle}
+
+% Поля
+%--------------------------------------
+\usepackage{geometry}
+\geometry{a4paper,tmargin=2cm,bmargin=2cm,lmargin=3cm,rmargin=1cm}
+%--------------------------------------
+
+
+%Russian-specific packages
+%--------------------------------------
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc} 
+\usepackage[english, main=russian]{babel}
+%--------------------------------------
+
+\usepackage{textcomp}
+
+% Красная строка
+%--------------------------------------
+\usepackage{indentfirst}               
+%--------------------------------------             
+
+
+%Graphics
+%--------------------------------------
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{ {./images/} }
+\usepackage{wrapfig}
+%--------------------------------------
+
+% Полуторный интервал
+%--------------------------------------
+\linespread{1.3}                    
+%--------------------------------------
+
+%Выравнивание и переносы
+%--------------------------------------
+% Избавляемся от переполнений
+\sloppy
+% Запрещаем разрыв страницы после первой строки абзаца
+\clubpenalty=10000
+% Запрещаем разрыв страницы после последней строки абзаца
+\widowpenalty=10000
+%--------------------------------------
+
+%Списки
+\usepackage{enumitem}
+
+%Подписи
+\usepackage{caption} 
+
+%Гиперссылки
+\usepackage{hyperref}
+
+\hypersetup {
+	unicode=true
+}
+
+%Рисунки
+%--------------------------------------
+\DeclareCaptionLabelSeparator*{emdash}{~--- }
+\captionsetup[figure]{labelsep=emdash,font=onehalfspacing,position=bottom}
+%--------------------------------------
+
+\usepackage{tempora}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{listings}
+\lstset{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=Python,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{blue},
+  commentstyle=\itshape\color{purple},
+  identifierstyle=\color{black},
+  stringstyle=\color{red},
+}
+
+%--------------------------------------
+%			НАЧАЛО ДОКУМЕНТА
+%--------------------------------------
+
+\begin{document}
+
+%--------------------------------------
+%			ТИТУЛЬНЫЙ ЛИСТ
+%--------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+\newpage
+
+
+%Шапка титульного листа
+%--------------------------------------
+\vspace*{-60pt}
+\hspace{-65pt}
+\begin{minipage}{0.3\textwidth}
+\hspace*{-20pt}\centering
+\includegraphics[width=\textwidth]{emblem}
+\end{minipage}
+\begin{minipage}{0.67\textwidth}\small \textbf{
+\vspace*{-0.7ex}
+\hspace*{-6pt}\centerline{Министерство науки и высшего образования Российской Федерации}
+\vspace*{-0.7ex}
+\centerline{Федеральное государственное бюджетное образовательное учреждение }
+\vspace*{-0.7ex}
+\centerline{высшего образования}
+\vspace*{-0.7ex}
+\centerline{<<Московский государственный технический университет}
+\vspace*{-0.7ex}
+\centerline{имени .. Баумана}
+\vspace*{-0.7ex}
+\centerline{(национальный исследовательский университет)>>}
+\vspace*{-0.7ex}
+\centerline{(МГТУ им. Н.Э. Баумана)}}
+\end{minipage}
+%--------------------------------------
+
+%Полосы
+%--------------------------------------
+\vspace{-25pt}
+\hspace{-35pt}\rule{\textwidth}{2.3pt}
+
+\vspace*{-20.3pt}
+\hspace{-35pt}\rule{\textwidth}{0.4pt}
+%--------------------------------------
+
+\vspace{1.5ex}
+\hspace{-35pt} \noindent \small ФАКУЛЬТЕТ\hspace{80pt} <<Информатика и системы управления>>
+
+\vspace*{-16pt}
+\hspace{47pt}\rule{0.83\textwidth}{0.4pt}
+
+\vspace{0.5ex}
+\hspace{-35pt} \noindent \small КАФЕДРА\hspace{50pt} <<Теоретическая информатика и компьютерные технологии>>
+
+\vspace*{-16pt}
+\hspace{30pt}\rule{0.866\textwidth}{0.4pt}
+  
+\vspace{11em}
+
+
+\begin{center}
+\Large {\bf Лабораторная работа № 2} \\ 
+\large {\bf по курсу <<Теория формальных языков>>} \\ 
+\end{center}\normalsize
+
+\vspace{8em}
+
+\begin{flushright}
+  {Студентка группы ИУ9-52Б Хаустова М. М.\hspace*{15pt} \\
+  \vspace{2ex}
+  Преподаватель Непейвода А. Н.\hspace*{15pt}}
+\end{flushright}
+
+\vfill
+
+\begin{center}
+\textsl{Москва 2025}
+\end{center}
+\end{titlepage}
+
+\section*{Вариант}
+Регулярное выражение (вариант):
+\[
+R = \bigl(aba \mid bab \mid aabb\bigr)^* \; (a\mid b)(a\mid b)\; b b a \; \bigl(aba \mid bab \mid aabb\bigr)^*.
+\]
+Алфавит: $\Sigma=\{a,b\}$.
+
+\section{Построение НКА}
+
+
+\subsection{Графическая схема НКА}
+
+\includegraphics[width=\textwidth]{nka.png}
+
+\subsection{Примерная таблица эквивалентностей для НКА}
+
+\includegraphics[width=\textwidth]{nka_table.png}
+Ниже приведён фрагмент таблицы различимости, где символ \texttt{+} обозначает подходящие слова, а \texttt{-} - слова, которые не принадлежат языку. Это примерная таблица, из нее можно получить нижнетреугольную путем переставления суффиксов и префиксов между собой.
+
+\section{Построение ДКА}
+\subsection{Графическая схема ДКА}
+
+
+\includegraphics[width=\textwidth]{dka.png}
+\subsection{Таблица классов эквивалентности}
+
+Приведён фрагмент таблицы различимости, где символ \texttt{+} обозначает подходящие слова, а \texttt{-} - слова, которые не принадлежат языку.
+
+\begin{center}
+\includegraphics[width=\textwidth]{tableDKA}
+\end{center}
+
+Анализ полной таблицы различимости (44 состояния) показал, что \emph{все пары различных состояний различимы}.  
+Следовательно, ни одно состояние ДКА нельзя объединить с другим без изменения языка.  
+Таким образом, исходный ДКА является \textbf{минимальным} по числу состояний.
+
+\section{Построение ПКА}
+
+\includegraphics[width=\textwidth]{pka.png}
+
+В этом графе две ветви - одна НКА, другая - упрощенный НКА. НКА и так минимален, поэтому еще одна таблица эквивалентностей не нужна.
+
+
+\section{Получение расширенного регулярного выражения}
+
+Исходное регулярное выражение имеет вид:
+\[
+R = (aba \mid bab \mid aabb)^* (a \mid b)(a \mid b)bba(aba \mid bab \mid aabb)^*.
+\]
+
+Данное выражение описывает множество всех слов над алфавитом $\{a, b\}$, которые содержат
+подпоследовательность двух произвольных букв, за которой следует фрагмент \texttt{bba},
+а также могут иметь произвольное количество блоков \texttt{aba}, \texttt{bab} или \texttt{aabb}
+до и после этой части.
+
+Для упрощения и приведения выражения к \emph{расширенному виду} используем доступные операции:
+\begin{itemize}
+  \item символ подстановки \texttt{.}, соответствующий любому символу алфавита;
+  \item маркеры начала и конца строки (\texttt{\^} и \texttt{\$});
+  \item необязательную группировку с помощью скобок \texttt{(?:\,)} при необходимости;
+  \item квантификаторы итерации (\texttt{*}, \texttt{+}, \texttt{?}).
+\end{itemize}
+
+Подвыражение $(a \mid b)(a \mid b)$ эквивалентно записи \texttt{..},
+так как каждая точка соответствует ровно одному символу из алфавита $\{a, b\}$.
+
+Таким образом, получаем эквивалентное расширенное регулярное выражение:
+\[
+R_{\mathrm{ext}} = \; ^ \; (aba \mid bab \mid aabb)^* \; .. \; bba \; (aba \mid bab \mid aabb)^* \; \$.
+\]
+
+В записи, удобной для реализации (например, в синтаксисе POSIX или PCRE), оно имеет вид:
+\[
+\texttt{\^{\char`(}?:aba|bab|aabb{\char`)}*..bba{\char`(}?:aba|bab|aabb{\char`)}*\$}.
+\]
+
+\paragraph{Обоснование.}
+Расширенное выражение описывает тот же язык, что и исходное, поскольку операция замены
+$(a \mid b)(a \mid b)$ на \texttt{..} не изменяет множество допускаемых слов,
+а добавление маркеров начала и конца строки гарантирует полное соответствие входной строки языку.
+
+
+
+\section{Результаты тестирования}
+Скрипт запускается локально: при 5000 случайных тестах длиной до 20 символов на тестовой реализации (локально) несоответствий не зафиксировано — это даёт подтверждение корректности построенных распознавателей.
+
+\end{document}
