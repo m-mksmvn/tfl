@@ -1,0 +1,91 @@
+digraph NFA {
+  rankdir=LR;
+  node [shape = circle];
+
+
+  start [shape=point];
+  start -> s1;
+
+  s1;       
+  ls_accept; 
+
+
+  m1; m2; m3; m4;
+
+
+  rs_start;
+  rs_accept [shape=doublecircle];
+
+
+  r1_s; r1_e;
+  r1_a1; r1_b1;   
+  r1_b2; r1_a2;
+  r1_a3; r1_a4; r1_b3; 
+
+  
+  r2_s; r2_e;
+  r2_a1; r2_b1; 
+  r2_b2; r2_a2;
+  r2_a3; r2_a4; r2_b3; 
+
+
+  s1 [label="S* entry"];
+  ls_accept [label="S* exit / middle"];
+  rs_start [label="T* entry"];
+  rs_accept [label="Accept"];
+
+
+  s1 -> ls_accept [label="ε"];
+  s1 -> r1_s    [label="ε"];
+  r1_e -> r1_s  [label="ε"];
+  r1_e -> ls_accept [label="ε"];
+
+
+  r1_s -> r1_a1 [label="a"];
+  r1_a1 -> r1_b1 [label="b"];
+  r1_b1 -> r1_e  [label="a"];
+
+
+  r1_s -> r1_b2 [label="b"];
+  r1_b2 -> r1_a2 [label="a"];
+  r1_a2 -> r1_e  [label="b"];
+
+
+  r1_s -> r1_a3 [label="a"];
+  r1_a3 -> r1_a4 [label="a"];
+  r1_a4 -> r1_b3 [label="b"];
+  r1_b3 -> r1_e  [label="b"];
+
+
+  ls_accept -> m1 [label="a"];
+  ls_accept -> m1 [label="b"];
+
+  m1 -> m2 [label="a"];
+  m1 -> m2 [label="b"];
+
+  m2 -> m3 [label="b"];
+  m3 -> m4 [label="b"];
+  m4 -> rs_start [label="a"];
+
+
+  rs_start -> rs_accept [label="ε"];
+  rs_start -> r2_s      [label="ε"];
+  r2_e    -> r2_s       [label="ε"];
+  r2_e    -> rs_accept  [label="ε"];
+
+
+  r2_s -> r2_a1 [label="a"];
+  r2_a1 -> r2_b1 [label="b"];
+  r2_b1 -> r2_e  [label="a"];
+
+
+  r2_s -> r2_b2 [label="b"];
+  r2_b2 -> r2_a2 [label="a"];
+  r2_a2 -> r2_e  [label="b"];
+
+
+  r2_s -> r2_a3 [label="a"];
+  r2_a3 -> r2_a4 [label="a"];
+  r2_a4 -> r2_b3 [label="b"];
+  r2_b3 -> r2_e  [label="b"];
+}
