@@ -1,0 +1,113 @@
+digraph PKA {
+    rankdir=LR;
+    node [fontname="Arial"];
+
+    /* ===== Корневое состояние ===== */
+    amp [shape=box, label="&"]; /* стартовое состояние */
+
+    /* ---------------------------------------------------------------------- */
+    /* ======================= ЛЕВАЯ ВЕТВЬ — NFA ============================ */
+    /* ---------------------------------------------------------------------- */
+
+    /* Начало левой ветви */
+    s1 [label="S* entry"];
+    ls_accept [label="S* exit / middle"];
+    
+    /* Фрагмент R1 (aba, bab, aabb) */
+    r1_s; r1_e;
+    r1_a1; r1_b1;
+    r1_b2; r1_a2;
+    r1_a3; r1_a4; r1_b3;
+
+    /* Средний блок (a|b)(a|b)bb a */
+    m1; m2; m3; m4;
+
+    /* Фрагмент R2 (aba, bab, aabb) */
+    rs_start [label="T* entry"];
+    rs_accept [shape=doublecircle, label="Accept"];
+    r2_s; r2_e;
+    r2_a1; r2_b1;
+    r2_b2; r2_a2;
+    r2_a3; r2_a4; r2_b3;
+
+    /* ===== Связи левой ветви ===== */
+    /* Left star */
+    amp -> s1;
+    s1 -> ls_accept [label="ε"];
+    s1 -> r1_s [label="ε"];
+    r1_e -> r1_s [label="ε"];
+    r1_e -> ls_accept [label="ε"];
+
+    /* R1: aba */
+    r1_s -> r1_a1 [label="a"];
+    r1_a1 -> r1_b1 [label="b"];
+    r1_b1 -> r1_e [label="a"];
+
+    /* R1: bab */
+    r1_s -> r1_b2 [label="b"];
+    r1_b2 -> r1_a2 [label="a"];
+    r1_a2 -> r1_e [label="b"];
+
+    /* R1: aabb */
+    r1_s -> r1_a3 [label="a"];
+    r1_a3 -> r1_a4 [label="a"];
+    r1_a4 -> r1_b3 [label="b"];
+    r1_b3 -> r1_e [label="b"];
+
+    /* Middle chunk */
+    ls_accept -> m1 [label="a"];
+    ls_accept -> m1 [label="b"];
+    m1 -> m2 [label="a"];
+    m1 -> m2 [label="b"];
+    m2 -> m3 [label="b"];
+    m3 -> m4 [label="b"];
+    m4 -> rs_start [label="a"];
+
+    /* Right star */
+    rs_start -> rs_accept [label="ε"];
+    rs_start -> r2_s [label="ε"];
+    r2_e -> r2_s [label="ε"];
+    r2_e -> rs_accept [label="ε"];
+
+    /* R2: aba */
+    r2_s -> r2_a1 [label="a"];
+    r2_a1 -> r2_b1 [label="b"];
+    r2_b1 -> r2_e [label="a"];
+
+    /* R2: bab */
+    r2_s -> r2_b2 [label="b"];
+    r2_b2 -> r2_a2 [label="a"];
+    r2_a2 -> r2_e [label="b"];
+
+    /* R2: aabb */
+    r2_s -> r2_a3 [label="a"];
+    r2_a3 -> r2_a4 [label="a"];
+    r2_a4 -> r2_b3 [label="b"];
+    r2_b3 -> r2_e [label="b"];
+
+    /* ---------------------------------------------------------------------- */
+    /* ====================== УПРОЩЁННАЯ ПРАВАЯ ВЕТВЬ (DFA) ================= */
+    /* ---------------------------------------------------------------------- */
+    q0 [shape=circle, label="q0"];
+    q1 [shape=circle, label="q1"];
+    q2 [shape=circle, label="q2"];
+    q3 [shape=circle, label="q3"];
+    q4 [shape=circle, label="q4"];
+    qA [shape=doublecircle, label="qA"];
+
+    /* Начало из amp */
+    amp -> q0;
+
+    /* Цикл по любым символам */
+    q0 -> q0 [label="a,b"];
+    q0 -> q1 [label="a,b"]; /* начать угадывать точку входа */
+
+    /* Последовательность угадывания шаблона */
+    q1 -> q2 [label="a,b"];
+    q2 -> q3 [label="b"];
+    q3 -> q4 [label="b"];
+    q4 -> qA [label="a"];
+
+    /* После принятия — всё принимаем */
+    qA -> qA [label="a,b"];
+}
